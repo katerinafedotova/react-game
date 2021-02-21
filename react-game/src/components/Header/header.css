@@ -32,5 +32,14 @@ body{
     list-style-type: none;
 }
 .content__list > li{
+    padding: 0.5em;
+    border-radius: 15px;
+    border: 2px solid #070b79;
     color: #050969;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+.content__list > li:hover{
+    background:#f0f8ff;
+    transform: scale(1.1);
 }

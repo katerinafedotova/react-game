@@ -1,0 +1,33 @@
+.flip-card {
+    margin: 0.8em;
+    width: 135px;
+    height: 180px;
+    cursor:pointer;
+    perspective: 1000px; 
+}
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border:none;
+    -webkit-backface-visibility: hidden;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    backface-visibility: hidden;
+  }
+  
+  .flip-card-back {
+    border:1px grey solid;
+    transform: rotateY(180deg);
+  }

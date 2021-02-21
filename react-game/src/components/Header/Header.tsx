@@ -4,7 +4,7 @@ import './header.css';
 const Header:React.FC = () => (
   <header className="header">
     <div className="header__logo">
-      <h1 style={{fontFamily: 'RocknRoll One, sans-serif'}}>Simple Memory Game</h1>
+      <h1 style={{fontFamily: 'RocknRoll One, sans-serif'}}> Memory Game</h1>
     </div>
     <div className="header__content">
       <ul className="content__list">
