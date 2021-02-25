@@ -31,3 +31,17 @@
     border:1px grey solid;
     transform: rotateY(180deg);
   }
+  .rotateToBack{
+    transform: rotateY(180deg);
+  }
+  
+  .rotateToFront{
+    transform: rotateY(0deg);
+  }
+  .correct{
+    border: 3px solid #35d535;
+    pointer-events: none;
+  }
+  .wrong{
+    border:3px solid #e61c38;
+  }

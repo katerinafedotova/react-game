@@ -1,34 +1,67 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './card.css';
-import CSS from 'csstype';
 
 interface Props {
-  image:number,
+  imagesNumber:number,
+  index:number,
 }
-const Card: React.FC<Props> = ({image}:Props) => {
-  const [flippedCard, setFlippedCard] = useState<CSS.Properties>({});
+const pairElements:any[] =[];
+const parents:any[] =[];
+
+const Card: React.FC<Props> = ({imagesNumber, index}:Props) => {
   const handleClick=(e:React.MouseEvent):void => {
     const target = e.target as HTMLDivElement;
-    if (target.classList.contains('flip-card-front')) {
-      setFlippedCard({transform: 'rotateY(180deg)' });
-    } else {
-      setFlippedCard({transform: 'rotateY(0deg)' });
+    if (target.dataset.image && pairElements.length<2 && target.parentNode) {
+      const targetParent = target.parentNode as HTMLDivElement;
+      targetParent.classList.add('rotateToBack');
+      pairElements.push(target);
+      parents.push(targetParent);
+    }
+    if (pairElements.length===2) {
+      if (pairElements[0].dataset.image===pairElements[1].dataset.image) {
+        setTimeout(() => {
+          /* eslint-disable array-callback-return */
+          Array.from(parents).forEach((parent:any):void => {
+            parent.classList.add('correct');
+          });
+          pairElements.length=0;
+          parents.length=0;
+        }, 500);
+      } else {
+        setTimeout(() => {
+          /* eslint-disable array-callback-return */
+          Array.from(parents).forEach((parent:any):void => {
+            parent.classList.add('wrong');
+          });
+        }, 500);
+        setTimeout(() => {
+          Array.from(parents).forEach((parent:any):void => {
+            parent.classList.remove('wrong');
+            parent.classList.remove('rotateToBack');
+          });
+          pairElements.length=0;
+          parents.length=0;
+        }, 1500);
+      }
     }
   };
   /* eslint-disable jsx-a11y/no-static-element-interactions,
   jsx-a11y/click-events-have-key-events */
   return (
     <div className="flip-card">
-      <div className="flip-card-inner" style={flippedCard}>
+      <div
+        className="flip-card-inner"
+      >
         <div
           className="flip-card-front"
-          style={{backgroundImage: 'url(./card-back.png)'}}
+          style={{backgroundImage: 'url(./card-back.png)' }}
+          data-image={imagesNumber}
+          data-index={index}
           onClick={(e) => handleClick(e)}
         />
         <div
           className="flip-card-back"
-          style={{backgroundImage: `url(./${image}.jpg)`}}
-          onClick={(e) => handleClick(e)}
+          style={{backgroundImage: `url(./${imagesNumber}.jpg)`}}
         />
       </div>
     </div>

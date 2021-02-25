@@ -4,7 +4,7 @@ import './game.css';
 
 const Game:React.FC = () => {
   const imagesArray:number[] = [];
-  const numOfImages = 20;
+  const numOfImages = 14;
   for (let i=0; i<numOfImages/2; i+=1) {
     imagesArray.push(i+1);
     imagesArray.push(i+1);
@@ -15,7 +15,11 @@ const Game:React.FC = () => {
   return (
     <div className="game-container">
       {images.map((image:number, index:number) => (
-        <Card image={image} key={generateKey(String(index))} />
+        <Card
+          imagesNumber={image}
+          key={generateKey(String(index))}
+          index={index}
+        />
       ))}
     </div>
   );
