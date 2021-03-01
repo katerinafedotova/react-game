@@ -4,11 +4,12 @@ import './card.css';
 interface Props {
   imagesNumber:number,
   index:number,
+  soundOn:boolean
 }
 const pairElements:any[] =[];
 const parents:any[] =[];
 
-const Card: React.FC<Props> = ({imagesNumber, index}:Props) => {
+const Card: React.FC<Props> = ({imagesNumber, index, soundOn}:Props) => {
   const handleClick=(e:React.MouseEvent):void => {
     let audioPath: string;
     const target = e.target as HTMLDivElement;
@@ -46,8 +47,10 @@ const Card: React.FC<Props> = ({imagesNumber, index}:Props) => {
           parents.length=0;
         }, 1500);
       }
-      const audio = new Audio(audioPath);
-      setTimeout(() => audio.play(), 500);
+      if (soundOn) {
+        const audio = new Audio(audioPath);
+        setTimeout(() => audio.play(), 500);
+      }
     }
   };
   /* eslint-disable jsx-a11y/no-static-element-interactions,

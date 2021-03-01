@@ -1,20 +1,22 @@
 import React, {useState, useRef} from 'react';
 import CSS from 'csstype';
 import Modal from './Settings/Modal';
-// import SettingsModal from './Settings/SettingsModal';
+import SettingsModal from './Settings/SettingsModal';
 import Game from './Game/Game';
 import './Settings/header.css';
 import './Settings/modal.css';
 
 const Content:React.FC = () => {
-  // const [pairs, setPairs] = useState(0);
   const [isVisible, setIsVisible] = useState<CSS.Properties>({visibility: 'hidden'});
   const [settingsVisible, setSettingsVisible] = useState<CSS.Properties>({visibility: 'hidden'});
+  const [soundOn, setSoundOn] = useState(true);
   const selectRef = useRef<HTMLSelectElement>(null!);
+  const selectSoundRef = useRef<HTMLSelectElement>(null!);
   let numOfImages:number=0;
   if (selectRef.current) {
     numOfImages=Number(selectRef.current.value);
   }
+
   const handleClickOnOpen = ():void => {
     setIsVisible({visibility: 'visible'});
   };
@@ -22,11 +24,24 @@ const Content:React.FC = () => {
     setIsVisible({visibility: 'hidden'});
   };
   const handleClickOnOK=():void => {
-    console.log(selectRef.current.value);
     handleClickOnCancel();
   };
   const handleSettingsOnOpen=():void => {
     setSettingsVisible({visibility: 'visible'});
+  };
+  const handleSettingsOnCancel=():void => {
+    setSettingsVisible({visibility: 'hidden'});
+  };
+  const handleSettingsOnOK=():void => {
+    // console.log(selectImageRef.current.value);
+    if (selectSoundRef.current) {
+      if (selectSoundRef.current.value==='on') {
+        setSoundOn(true);
+      } else {
+        setSoundOn(false);
+      }
+    }
+    handleSettingsOnCancel();
   };
   /* eslint-disable jsx-a11y/click-events-have-key-events */
   /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
@@ -40,12 +55,12 @@ const Content:React.FC = () => {
         selectRef={selectRef}
         handleClickOnOK={handleClickOnOK}
       />
-      {/* <SettingsModal
+      <SettingsModal
         settingsVisible={settingsVisible}
-        handleClickOnCancel={handleClickOnCancel}
-        selectRef={selectRef}
-        handleClickOnOK={handleClickOnOK}
-      /> */}
+        handleSettingsOnCancel={handleSettingsOnCancel}
+        selectSoundRef={selectSoundRef}
+        handleSettingsOnOK={handleSettingsOnOK}
+      />
       <header className="header">
         <div className="header__logo">
           <h1 style={{fontFamily: 'RocknRoll One, sans-serif'}}> Memory Game</h1>
@@ -63,7 +78,7 @@ const Content:React.FC = () => {
           </ul>
         </div>
       </header>
-      <Game numOfImages={numOfImages} />
+      <Game numOfImages={numOfImages} soundOn={soundOn} />
     </>
   );
 };

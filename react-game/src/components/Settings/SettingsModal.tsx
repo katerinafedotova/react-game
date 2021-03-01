@@ -2,12 +2,12 @@ import React from 'react';
 
 type Props={
   settingsVisible:any,
-  handleClickOnCancel:()=>void,
-  selectRef:any,
-  handleClickOnOK:()=>void,
+  handleSettingsOnCancel:()=>void,
+  selectSoundRef:any,
+  handleSettingsOnOK:()=>void,
 };
 const SettingsModal:React.FC<Props> = ({
-  settingsVisible, handleClickOnCancel, selectRef, handleClickOnOK,
+  settingsVisible, handleSettingsOnCancel, selectSoundRef, handleSettingsOnOK,
 }:Props) => (
 /* eslint-disable jsx-a11y/click-events-have-key-events */
   /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
@@ -18,13 +18,13 @@ const SettingsModal:React.FC<Props> = ({
           src="./cancel.png"
           alt="cancel button"
           className="modal-content__cancel-button"
-          onClick={() => handleClickOnCancel()}
+          onClick={() => handleSettingsOnCancel()}
         />
         <h3>Sound</h3>
         <select
           name="cardsNumber"
           id="cardsNumber"
-          ref={selectRef}
+          ref={selectSoundRef}
         >
           <option value="on">on</option>
           <option value="off">off</option>
@@ -33,7 +33,7 @@ const SettingsModal:React.FC<Props> = ({
         <select
           name="cardsNumber"
           id="cardsNumber"
-          ref={selectRef}
+          // ref={selectRef}
         >
           {/* eslint-disable jsx-a11y/control-has-associated-label */}
           <option value="image 1" style={{backgroundImage: 'url(./card-back.png)' }} />
@@ -42,7 +42,7 @@ const SettingsModal:React.FC<Props> = ({
         <button
           type="submit"
           className="modal-content__button"
-          onClick={() => handleClickOnOK()}
+          onClick={() => handleSettingsOnOK()}
         >OK
         </button>
       </div>

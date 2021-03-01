@@ -5,8 +5,9 @@ import './game.css';
 
 type Props={
   numOfImages:number,
+  soundOn:boolean
 };
-const Game:React.FC<Props> = ({numOfImages}:Props) => {
+const Game:React.FC<Props> = ({numOfImages, soundOn}:Props) => {
   const imagesArray:number[] = [];
   for (let i=0; i<numOfImages/2; i+=1) {
     imagesArray.push(i+1);
@@ -24,6 +25,7 @@ const Game:React.FC<Props> = ({numOfImages}:Props) => {
             imagesNumber={image}
             key={generateKey(String(index))}
             index={index}
+            soundOn={soundOn}
           />
         ))}
       </div>
