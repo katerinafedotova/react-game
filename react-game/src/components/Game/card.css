@@ -2,6 +2,7 @@
     margin: 0.8em;
     width: 135px;
     height: 180px;
+    box-shadow: 2px 2px 10px 3px aliceblue;
     cursor:pointer;
     perspective: 1000px; 
 }

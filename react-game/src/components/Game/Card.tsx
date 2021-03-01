@@ -10,6 +10,7 @@ const parents:any[] =[];
 
 const Card: React.FC<Props> = ({imagesNumber, index}:Props) => {
   const handleClick=(e:React.MouseEvent):void => {
+    let audioPath: string;
     const target = e.target as HTMLDivElement;
     if (target.dataset.image && pairElements.length<2 && target.parentNode) {
       const targetParent = target.parentNode as HTMLDivElement;
@@ -19,6 +20,7 @@ const Card: React.FC<Props> = ({imagesNumber, index}:Props) => {
     }
     if (pairElements.length===2) {
       if (pairElements[0].dataset.image===pairElements[1].dataset.image) {
+        audioPath = './audio/success_sound.mp3';
         setTimeout(() => {
           /* eslint-disable array-callback-return */
           Array.from(parents).forEach((parent:any):void => {
@@ -28,6 +30,7 @@ const Card: React.FC<Props> = ({imagesNumber, index}:Props) => {
           parents.length=0;
         }, 500);
       } else {
+        audioPath = '../../audio/mistake_sound.mp3';
         setTimeout(() => {
           /* eslint-disable array-callback-return */
           Array.from(parents).forEach((parent:any):void => {
@@ -43,6 +46,8 @@ const Card: React.FC<Props> = ({imagesNumber, index}:Props) => {
           parents.length=0;
         }, 1500);
       }
+      const audio = new Audio(audioPath);
+      setTimeout(() => audio.play(), 500);
     }
   };
   /* eslint-disable jsx-a11y/no-static-element-interactions,

@@ -1,10 +1,13 @@
 import React from 'react';
 import Card from './Card';
+import GameStatus from '../GameStatus/GameStatus';
 import './game.css';
 
-const Game:React.FC = () => {
+type Props={
+  numOfImages:number,
+};
+const Game:React.FC<Props> = ({numOfImages}:Props) => {
   const imagesArray:number[] = [];
-  const numOfImages = 14;
   for (let i=0; i<numOfImages/2; i+=1) {
     imagesArray.push(i+1);
     imagesArray.push(i+1);
@@ -13,15 +16,18 @@ const Game:React.FC = () => {
   const images=getRandomImages();
   const generateKey = (index: string) => `${index}_${new Date().getMilliseconds()}`;
   return (
-    <div className="game-container">
-      {images.map((image:number, index:number) => (
-        <Card
-          imagesNumber={image}
-          key={generateKey(String(index))}
-          index={index}
-        />
-      ))}
-    </div>
+    <>
+      <GameStatus />
+      <div className="game-container">
+        {images.map((image:number, index:number) => (
+          <Card
+            imagesNumber={image}
+            key={generateKey(String(index))}
+            index={index}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 export default Game;
