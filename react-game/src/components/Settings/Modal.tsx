@@ -5,14 +5,16 @@ type Props={
   handleClickOnCancel:()=>void,
   selectRef:any,
   handleClickOnOK:any,
+  style:any,
+  styleSelect:any,
 };
 const Modal:React.FC<Props> = ({
-  isVisible, handleClickOnCancel, selectRef, handleClickOnOK,
+  isVisible, handleClickOnCancel, selectRef, handleClickOnOK, style, styleSelect,
 }:Props) => (
 /* eslint-disable jsx-a11y/click-events-have-key-events */
   /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
   <div className="modal-wrapper" style={isVisible}>
-    <div className="modal">
+    <div className="modal" style={style}>
       <div className="modal-content">
         <img
           src="./cancel.png"
@@ -25,6 +27,7 @@ const Modal:React.FC<Props> = ({
           name="cardsNumber"
           id="cardsNumber"
           ref={selectRef}
+          style={styleSelect}
         >
           <option value="10">10</option>
           <option value="20">20</option>

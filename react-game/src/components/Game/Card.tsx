@@ -4,12 +4,15 @@ import './card.css';
 interface Props {
   imagesNumber:number,
   index:number,
-  soundOn:boolean
+  soundOn:boolean,
+  cardFace:string
 }
 const pairElements:any[] =[];
 const parents:any[] =[];
 
-const Card: React.FC<Props> = ({imagesNumber, index, soundOn}:Props) => {
+const Card: React.FC<Props> = ({
+  imagesNumber, index, soundOn, cardFace,
+}:Props) => {
   const handleClick=(e:React.MouseEvent):void => {
     let audioPath: string;
     const target = e.target as HTMLDivElement;
@@ -62,7 +65,7 @@ const Card: React.FC<Props> = ({imagesNumber, index, soundOn}:Props) => {
       >
         <div
           className="flip-card-front"
-          style={{backgroundImage: 'url(./card-back.png)' }}
+          style={{backgroundImage: `url(./${cardFace})`}}
           data-image={imagesNumber}
           data-index={index}
           onClick={(e) => handleClick(e)}

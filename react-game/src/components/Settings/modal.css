@@ -8,22 +8,30 @@
     margin: 0 auto;
     min-height:220px;
     width: 520px;
-    background: white;
 }
 .modal-content{
     padding: 20px;
     position: relative;
 }
-.modal-content>h3{
-    margin: 0 0 1.5em 0;
+.modal-content__sound, .modal-content__cardFace, .modal-content__mode{
+    margin: 1em 0;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
-#cardsNumber{
+.modal-content>h3{
+    margin: 0.8em 0;
+}
+#cardsNumber, #theme, #cardFace, #sound{
     display: block;
-    margin: 0 auto;
+    margin: 0 1em;
     padding: 2px 5px;
     border-radius: 10px;
     font-size: 1.2em;
     cursor:pointer;
+}
+#cardsNumber{
+    margin: 0 auto;
 }
 .modal-content__cancel-button{
     width: 25px;
