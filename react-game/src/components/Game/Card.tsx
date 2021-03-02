@@ -39,7 +39,9 @@ const Card: React.FC<Props> = ({
           audioPath = '../../audio/success.mp3';
           const successAudio = new Audio(audioPath);
           setTimeout(() => {
-            successAudio.play();
+            if (soundOn) {
+              successAudio.play();
+            }
             setGameJustOpened(true);
             setGameFinished(true);
           }, 1000);

@@ -27,8 +27,8 @@ const languageConst:IAppLang = {
     time: 'Time',
     turn: 'Turn',
     pairsFound: 'Pairs found',
-    gameFinished: 'Game finished! You have done it in',
-    turns: 'turns',
+    gameFinished: 'Game finished! It took you',
+    turns: 'turns to find all pairs',
   },
   russian: {
     newGame: 'Новая игра',
@@ -54,7 +54,7 @@ const languageConst:IAppLang = {
     turn: 'Ходы',
     pairsFound: 'Найденные пары',
     gameFinished: 'Ииии игра окончена! Тебе понадобилось',
-    turns: 'ходов',
+    turns: 'ходов, чтобы найти все пары',
   },
 };
 export default languageConst;
