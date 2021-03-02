@@ -32,7 +32,6 @@ body{
     display: flex;
     align-items: center;
     font-family: 'RocknRoll One', sans-serif;
-    color:#070b79;
 }
 .header__content{
     flex-basis: 45%;

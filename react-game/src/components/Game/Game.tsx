@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Card from './Card';
 import GameStatus from '../GameStatus/GameStatus';
 import './game.css';
+import languageConst from '../../assets/languageConst';
 
 type Props={
   numOfImages:number,
@@ -10,10 +11,11 @@ type Props={
   selectInitialRef:any,
   styleSelect:any,
   setNumOfImages:any,
+  language:string
 };
 const Game:React.FC<Props> = ({
   numOfImages, soundOn, cardFace,
-  selectInitialRef, styleSelect, setNumOfImages,
+  selectInitialRef, styleSelect, setNumOfImages, language,
 }:Props) => {
   const [gameJustOpened, setGameJustOpened] =useState(true);
   const handleClickOnOK=():void => {
@@ -34,13 +36,13 @@ const Game:React.FC<Props> = ({
   /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
   return (
     <>
-      <GameStatus />
+      <GameStatus language={language} />
       <div className="game-container">
         {gameJustOpened
           ? (
             <div className="modal">
               <div className="modal-content">
-                <h3>Choose number of cards to start a game</h3>
+                <h3>{languageConst[language].chooseNumOfCards}</h3>
                 <select
                   name="cardsNumber"
                   id="cardsNumber"
@@ -55,7 +57,7 @@ const Game:React.FC<Props> = ({
                   type="submit"
                   className="modal-content__button"
                   onClick={() => handleClickOnOK()}
-                >START
+                >{languageConst[language].start}
                 </button>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import languageConst from '../../assets/languageConst';
 
 type Props={
   isVisible:any,
@@ -7,9 +8,11 @@ type Props={
   handleClickOnOK:any,
   style:any,
   styleSelect:any,
+  language:string,
 };
 const Modal:React.FC<Props> = ({
-  isVisible, handleClickOnCancel, selectRef, handleClickOnOK, style, styleSelect,
+  isVisible, handleClickOnCancel, selectRef,
+  handleClickOnOK, style, styleSelect, language,
 }:Props) => (
 /* eslint-disable jsx-a11y/click-events-have-key-events */
   /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
@@ -22,7 +25,7 @@ const Modal:React.FC<Props> = ({
           className="modal-content__cancel-button"
           onClick={() => handleClickOnCancel()}
         />
-        <h3>Choose number of cards</h3>
+        <h3>{languageConst[language].chooseNumOfCardsModal}</h3>
         <select
           name="cardsNumber"
           id="cardsNumber"

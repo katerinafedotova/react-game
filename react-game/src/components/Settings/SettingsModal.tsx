@@ -1,5 +1,6 @@
 import React from 'react';
 import './modal.css';
+import languageConst from '../../assets/languageConst';
 
 type Props={
   settingsVisible:any,
@@ -7,14 +8,16 @@ type Props={
   selectSoundRef:any,
   selectCardFaceRef:any,
   selectModeRef:any,
+  selectLanguageRef:any,
   handleSettingsOnOK:()=>void,
   style:any,
-  styleSelect:any
+  styleSelect:any,
+  language:string
 };
 const SettingsModal:React.FC<Props> = ({
   settingsVisible, handleSettingsOnCancel,
-  selectSoundRef, selectCardFaceRef, selectModeRef,
-  handleSettingsOnOK, style, styleSelect,
+  selectSoundRef, selectCardFaceRef, selectModeRef, selectLanguageRef,
+  handleSettingsOnOK, style, styleSelect, language,
 }:Props) => (
 /* eslint-disable jsx-a11y/click-events-have-key-events */
   /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
@@ -28,40 +31,52 @@ const SettingsModal:React.FC<Props> = ({
           onClick={() => handleSettingsOnCancel()}
         />
         <div className="modal-content__sound">
-          <h3>Sound</h3>
+          <h3>{languageConst[language].sound}</h3>
           <select
             name="sound"
             id="sound"
             ref={selectSoundRef}
             style={styleSelect}
           >
-            <option value="on">on</option>
-            <option value="off">off</option>
+            <option value="on">{languageConst[language].on}</option>
+            <option value="off">{languageConst[language].off}</option>
           </select>
         </div>
         <div className="modal-content__cardFace">
-          <h3>Card face</h3>
+          <h3>{languageConst[language].cardFace}</h3>
           <select
             name="cardFace"
             id="cardFace"
             ref={selectCardFaceRef}
             style={styleSelect}
           >
-            <option value="default">default</option>
-            <option value="paysage">paysage</option>
-            <option value="city">city</option>
+            <option value="default">{languageConst[language].default}</option>
+            <option value="paysage">{languageConst[language].paysage}</option>
+            <option value="city">{languageConst[language].city}</option>
           </select>
         </div>
         <div className="modal-content__mode">
-          <h3>Mode</h3>
+          <h3>{languageConst[language].language}</h3>
+          <select
+            name="language"
+            id="language"
+            ref={selectLanguageRef}
+            style={styleSelect}
+          >
+            <option value="english">{languageConst[language].en}</option>
+            <option value="russian">{languageConst[language].ru}</option>
+          </select>
+        </div>
+        <div className="modal-content__mode">
+          <h3>{languageConst[language].mode}</h3>
           <select
             name="theme"
             id="theme"
             ref={selectModeRef}
             style={styleSelect}
           >
-            <option value="light">light</option>
-            <option value="dark">dark</option>
+            <option value="light">{languageConst[language].light}</option>
+            <option value="dark">{languageConst[language].dark}</option>
           </select>
         </div>
         <button

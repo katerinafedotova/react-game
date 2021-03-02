@@ -6,49 +6,23 @@ import Game from './Game/Game';
 import Footer from './Footer/Footer';
 import './Settings/header.css';
 import './Settings/modal.css';
+import {darkMode, lightMode} from '../assets/modeStyles';
+import languageConst from '../assets/languageConst';
 
 const Content:React.FC = () => {
-  const darkMode={
-    content: {
-      background: '#37638a',
-      color: '#ced8e0',
-    },
-    header: {
-      background: '#225079',
-    },
-    modal: {
-      background: '#356da0',
-    },
-    select: {
-      background: '#cad5de',
-    },
-  };
-  const lightMode={
-    content: {
-      background: '#f0f8ff',
-      color: '#050969',
-    },
-    header: {
-      background: '#ddecf9',
-    },
-    modal: {
-      background: '#ffffff',
-    },
-    select: {
-      background: '#ffffff',
-    },
-  };
   const [isVisible, setIsVisible] = useState<CSS.Properties>({visibility: 'hidden'});
   const [settingsVisible, setSettingsVisible] = useState<CSS.Properties>({visibility: 'hidden'});
   const [numOfImages, setNumOfImages]=useState<number>(0);
   const [soundOn, setSoundOn] = useState(true);
   const [cardFace, setCardFace] = useState('card-back.png');
   const [mode, setMode] = useState(lightMode);
+  const [language, setLanguage] =useState('english');
   const selectRef = useRef<HTMLSelectElement>(null!);
   const selectInitialRef= useRef<HTMLSelectElement>(null!);
   const selectSoundRef = useRef<HTMLSelectElement>(null!);
   const selectCardFaceRef = useRef<HTMLSelectElement>(null!);
   const selectModeRef = useRef<HTMLSelectElement>(null!);
+  const selectLanguageRef = useRef<HTMLSelectElement>(null!);
   const handleClickOnOpen = ():void => {
     setIsVisible({visibility: 'visible'});
   };
@@ -88,8 +62,17 @@ const Content:React.FC = () => {
     if (selectModeRef.current) {
       if (selectModeRef.current.value==='light') {
         setMode(lightMode);
+        document.body.style.background = '#f0f8ff';
       } else {
         setMode(darkMode);
+        document.body.style.background = '#37638a';
+      }
+    }
+    if (selectLanguageRef.current) {
+      if (selectLanguageRef.current.value==='english') {
+        setLanguage('english');
+      } else {
+        setLanguage('russian');
       }
     }
     handleSettingsOnCancel();
@@ -108,6 +91,7 @@ const Content:React.FC = () => {
           handleClickOnOK={handleClickOnOK}
           style={mode.modal}
           styleSelect={mode.select}
+          language={language}
         />
         <SettingsModal
           settingsVisible={settingsVisible}
@@ -115,9 +99,11 @@ const Content:React.FC = () => {
           selectSoundRef={selectSoundRef}
           selectCardFaceRef={selectCardFaceRef}
           selectModeRef={selectModeRef}
+          selectLanguageRef={selectLanguageRef}
           handleSettingsOnOK={handleSettingsOnOK}
           style={mode.modal}
           styleSelect={mode.select}
+          language={language}
         />
         <header className="header" style={mode.header}>
           <div className="header__logo">
@@ -125,11 +111,11 @@ const Content:React.FC = () => {
           </div>
           <div className="header__content">
             <ul className="content__list">
-              <li onClick={() => handleClickOnOpen()}>New Game
+              <li onClick={() => handleClickOnOpen()}>{languageConst[language].newGame}
               </li>
-              <li>Best results</li>
+              <li>{languageConst[language].bestResults}</li>
               {/* a table with 10 best games from local storage */}
-              <li onClick={() => handleSettingsOnOpen()}>Settings</li>
+              <li onClick={() => handleSettingsOnOpen()}>{languageConst[language].settings}</li>
               {/* sound on off, choose how card looks like, theme dark or light */}
             </ul>
           </div>
@@ -141,6 +127,7 @@ const Content:React.FC = () => {
           selectInitialRef={selectInitialRef}
           styleSelect={mode.select}
           setNumOfImages={setNumOfImages}
+          language={language}
         />
       </div>
       <Footer style={mode.content} />

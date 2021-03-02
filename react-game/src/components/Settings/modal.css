@@ -22,7 +22,7 @@
 .modal-content>h3{
     margin: 0.8em 0;
 }
-#cardsNumber, #theme, #cardFace, #sound{
+#cardsNumber, #theme, #cardFace, #sound, #language{
     display: block;
     margin: 0 1em;
     padding: 2px 5px;
