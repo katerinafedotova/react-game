@@ -5,13 +5,19 @@ interface Props {
   imagesNumber:number,
   index:number,
   soundOn:boolean,
-  cardFace:string
+  cardFace:string,
+  numberOfCards:number,
+  setGameFinished:any,
+  setGameJustOpened:any,
 }
 const pairElements:any[] =[];
 const parents:any[] =[];
+let guessedElements:number=0;
+let numberOfTurns:number=0;
 
 const Card: React.FC<Props> = ({
   imagesNumber, index, soundOn, cardFace,
+  numberOfCards, setGameFinished, setGameJustOpened,
 }:Props) => {
   const handleClick=(e:React.MouseEvent):void => {
     let audioPath: string;
@@ -23,7 +29,21 @@ const Card: React.FC<Props> = ({
       parents.push(targetParent);
     }
     if (pairElements.length===2) {
+      numberOfTurns+=1;
       if (pairElements[0].dataset.image===pairElements[1].dataset.image) {
+        guessedElements+=1;
+        if (guessedElements===numberOfCards/2) {
+          localStorage.setItem('numberOfTurns', `${numberOfTurns}`);
+          guessedElements=0;
+          numberOfTurns=0;
+          audioPath = '../../audio/success.mp3';
+          const successAudio = new Audio(audioPath);
+          setTimeout(() => {
+            successAudio.play();
+            setGameJustOpened(true);
+            setGameFinished(true);
+          }, 1000);
+        }
         audioPath = './audio/success_sound.mp3';
         setTimeout(() => {
           /* eslint-disable array-callback-return */
@@ -48,7 +68,7 @@ const Card: React.FC<Props> = ({
           });
           pairElements.length=0;
           parents.length=0;
-        }, 1500);
+        }, 1000);
       }
       if (soundOn) {
         const audio = new Audio(audioPath);

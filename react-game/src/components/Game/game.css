@@ -4,3 +4,31 @@
     flex-wrap:wrap;
     justify-content: center;
 }
+.game-container__game-end{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.game-end__title{
+    padding:0.5em;
+}
+.game-end__image{
+    max-width: 400px;
+}
+@media(max-width:500px){
+    .game-end__image{
+        max-width: 350px;
+    }
+    .game-end__title{
+        font-size:1.2em;
+    }
+}
+@media(max-width:400px){
+    .game-end__image{
+        max-width: 250px;
+    }
+    .game-end__title{
+        font-size:1.1em;
+    }
+}
