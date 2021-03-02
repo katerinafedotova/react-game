@@ -1,6 +1,5 @@
 import React, {useState, useRef} from 'react';
 import CSS from 'csstype';
-import Modal from './Settings/Modal';
 import SettingsModal from './Settings/SettingsModal';
 import Game from './Game/Game';
 import Footer from './Footer/Footer';
@@ -10,31 +9,24 @@ import {darkMode, lightMode} from '../assets/modeStyles';
 import languageConst from '../assets/languageConst';
 
 const Content:React.FC = () => {
-  const [isVisible, setIsVisible] = useState<CSS.Properties>({visibility: 'hidden'});
+  const [gameJustOpened, setGameJustOpened] =useState(true);
   const [settingsVisible, setSettingsVisible] = useState<CSS.Properties>({visibility: 'hidden'});
   const [numOfImages, setNumOfImages]=useState<number>(0);
   const [soundOn, setSoundOn] = useState(true);
   const [cardFace, setCardFace] = useState('card-back.png');
   const [mode, setMode] = useState(lightMode);
   const [language, setLanguage] =useState('english');
-  const selectRef = useRef<HTMLSelectElement>(null!);
   const selectInitialRef= useRef<HTMLSelectElement>(null!);
   const selectSoundRef = useRef<HTMLSelectElement>(null!);
   const selectCardFaceRef = useRef<HTMLSelectElement>(null!);
   const selectModeRef = useRef<HTMLSelectElement>(null!);
   const selectLanguageRef = useRef<HTMLSelectElement>(null!);
   const handleClickOnOpen = ():void => {
-    setIsVisible({visibility: 'visible'});
-  };
-  const handleClickOnCancel =():void => {
-    setIsVisible({visibility: 'hidden'});
-  };
-  const handleClickOnOK=():void => {
-    if (selectRef.current) {
-      console.log(selectRef.current.value);
-      setNumOfImages(Number(selectRef.current.value));
+    if (gameJustOpened) {
+      alert('Just click on START!');
+    } else {
+      setGameJustOpened(true);
     }
-    handleClickOnCancel();
   };
   const handleSettingsOnOpen=():void => {
     setSettingsVisible({visibility: 'visible'});
@@ -82,17 +74,7 @@ const Content:React.FC = () => {
   return (
     <div style={mode.content}>
       <div style={{paddingBottom: '30px'}}>
-        <div className="overlay" style={isVisible} />
         <div className="overlay" style={settingsVisible} />
-        <Modal
-          isVisible={isVisible}
-          handleClickOnCancel={handleClickOnCancel}
-          selectRef={selectRef}
-          handleClickOnOK={handleClickOnOK}
-          style={mode.modal}
-          styleSelect={mode.select}
-          language={language}
-        />
         <SettingsModal
           settingsVisible={settingsVisible}
           handleSettingsOnCancel={handleSettingsOnCancel}
@@ -116,11 +98,12 @@ const Content:React.FC = () => {
               <li>{languageConst[language].bestResults}</li>
               {/* a table with 10 best games from local storage */}
               <li onClick={() => handleSettingsOnOpen()}>{languageConst[language].settings}</li>
-              {/* sound on off, choose how card looks like, theme dark or light */}
             </ul>
           </div>
         </header>
         <Game
+          gameJustOpened={gameJustOpened}
+          setGameJustOpened={setGameJustOpened}
           numOfImages={numOfImages}
           soundOn={soundOn}
           cardFace={cardFace}

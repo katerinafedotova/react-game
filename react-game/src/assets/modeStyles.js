@@ -7,7 +7,7 @@ const darkMode={
     background: '#225079',
   },
   modal: {
-    background: '#356da0',
+    background: '#2b5a85',
   },
   select: {
     background: '#cad5de',

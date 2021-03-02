@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Card from './Card';
 import GameStatus from '../GameStatus/GameStatus';
 import './game.css';
@@ -11,13 +11,15 @@ type Props={
   selectInitialRef:any,
   styleSelect:any,
   setNumOfImages:any,
-  language:string
+  language:string,
+  gameJustOpened:boolean,
+  setGameJustOpened:any,
 };
 const Game:React.FC<Props> = ({
   numOfImages, soundOn, cardFace,
   selectInitialRef, styleSelect, setNumOfImages, language,
+  gameJustOpened, setGameJustOpened,
 }:Props) => {
-  const [gameJustOpened, setGameJustOpened] =useState(true);
   const handleClickOnOK=():void => {
     if (selectInitialRef.current) {
       setNumOfImages(Number(selectInitialRef.current.value));
@@ -57,6 +59,7 @@ const Game:React.FC<Props> = ({
                   type="submit"
                   className="modal-content__button"
                   onClick={() => handleClickOnOK()}
+                  style={styleSelect}
                 >{languageConst[language].start}
                 </button>
               </div>
