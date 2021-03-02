@@ -12,6 +12,10 @@ const darkMode={
   select: {
     background: '#cad5de',
   },
+  fullscreen: {
+    background: '#cad5de',
+    color: '#070b79',
+  },
 };
 const lightMode={
   content: {
@@ -26,6 +30,10 @@ const lightMode={
   },
   select: {
     background: '#ffffff',
+  },
+  fullscreen: {
+    background: '#050969',
+    color: '#f0f8ff',
   },
 };
 export {darkMode, lightMode};

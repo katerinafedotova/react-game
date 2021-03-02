@@ -29,6 +29,7 @@ const languageConst:IAppLang = {
     pairsFound: 'Pairs found',
     gameFinished: 'Game finished! It took you',
     turns: 'turns to find all pairs',
+    fullscreen: 'Set to fullscreen',
   },
   russian: {
     newGame: 'Новая игра',
@@ -55,6 +56,7 @@ const languageConst:IAppLang = {
     pairsFound: 'Найденные пары',
     gameFinished: 'Ииии игра окончена! Тебе понадобилось',
     turns: 'ходов, чтобы найти все пары',
+    fullscreen: 'Развернуть во весь экран',
   },
 };
 export default languageConst;

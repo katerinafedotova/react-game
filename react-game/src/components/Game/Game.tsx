@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import Card from './Card';
 import GameStatus from '../GameStatus/GameStatus';
 import './game.css';
@@ -7,20 +8,23 @@ import languageConst from '../../assets/languageConst';
 type Props={
   numOfImages:number,
   soundOn:boolean,
+  mode:string,
   cardFace:string,
   selectInitialRef:any,
   styleSelect:any,
+  styleFullscreen:any,
   setNumOfImages:any,
   language:string,
   gameJustOpened:boolean,
   setGameJustOpened:any,
 };
 const Game:React.FC<Props> = ({
-  numOfImages, soundOn, cardFace,
-  selectInitialRef, styleSelect, setNumOfImages, language,
+  numOfImages, soundOn, mode, cardFace,
+  selectInitialRef, styleSelect, styleFullscreen,
+  setNumOfImages, language,
   gameJustOpened, setGameJustOpened,
 }:Props) => {
-  /* eslint-disable prefer-const */
+  const handle = useFullScreenHandle();
   const [gameFinished, setGameFinished] =useState<boolean>(false);
   const handleClickOnOK=():void => {
     if (selectInitialRef.current) {
@@ -93,9 +97,21 @@ const Game:React.FC<Props> = ({
   return (
     <>
       <GameStatus language={language} />
-      <div className="game-container">
-        {gameContainer}
-      </div>
+      <button
+        type="button"
+        onClick={handle.enter}
+        className="fullscreen-btn"
+        style={styleFullscreen}
+      >{languageConst[language].fullscreen}
+      </button>
+      <FullScreen
+        handle={handle}
+        className={`${mode==='light' ? 'fullscreen--light' : 'fullscreen--dark'}`}
+      >
+        <div className="game-container">
+          {gameContainer}
+        </div>
+      </FullScreen>
     </>
   );
 };

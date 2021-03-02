@@ -3,14 +3,15 @@ import './footer.css';
 import logo from '../../assets/rs_school_logo.svg';
 
 type Props={
-  style:any
+  style:any,
+  linkStyle:any
 };
-const Footer:React.FC<Props> = ({style}:Props) => (
+const Footer:React.FC<Props> = ({style, linkStyle}:Props) => (
   <footer className="footer" style={style}>
     <p>
       2021 &copy;
       &nbsp;
-      <a href="https://github.com/katerinafedotova">katerinafedotova</a>
+      <a href="https://github.com/katerinafedotova" style={linkStyle}>katerinafedotova</a>
       <a href="https://rs.school/js/">
         <img src={logo} alt="RS School Logo" style={{height: '1.25rem'}} />
       </a>

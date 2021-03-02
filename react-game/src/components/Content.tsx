@@ -106,14 +106,16 @@ const Content:React.FC = () => {
           setGameJustOpened={setGameJustOpened}
           numOfImages={numOfImages}
           soundOn={soundOn}
+          mode={selectModeRef.current!==null ? selectModeRef.current.value: 'light'}
           cardFace={cardFace}
           selectInitialRef={selectInitialRef}
           styleSelect={mode.select}
+          styleFullscreen={mode.fullscreen}
           setNumOfImages={setNumOfImages}
           language={language}
         />
       </div>
-      <Footer style={mode.content} />
+      <Footer style={mode.content} linkStyle={mode.content} />
     </div>
 
   );
