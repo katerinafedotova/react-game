@@ -2,8 +2,11 @@ import React from 'react';
 import './footer.css';
 import logo from '../../assets/rs_school_logo.svg';
 
-const Footer:React.FC = () => (
-  <footer className="footer">
+type Props={
+  style:any
+};
+const Footer:React.FC<Props> = ({style}:Props) => (
+  <footer className="footer" style={style}>
     <p>
       2021 &copy;
       &nbsp;

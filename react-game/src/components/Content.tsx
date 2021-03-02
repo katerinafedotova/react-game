@@ -40,18 +40,15 @@ const Content:React.FC = () => {
   };
   const [isVisible, setIsVisible] = useState<CSS.Properties>({visibility: 'hidden'});
   const [settingsVisible, setSettingsVisible] = useState<CSS.Properties>({visibility: 'hidden'});
+  const [numOfImages, setNumOfImages]=useState<number>(0);
   const [soundOn, setSoundOn] = useState(true);
   const [cardFace, setCardFace] = useState('card-back.png');
   const [mode, setMode] = useState(lightMode);
   const selectRef = useRef<HTMLSelectElement>(null!);
+  const selectInitialRef= useRef<HTMLSelectElement>(null!);
   const selectSoundRef = useRef<HTMLSelectElement>(null!);
   const selectCardFaceRef = useRef<HTMLSelectElement>(null!);
   const selectModeRef = useRef<HTMLSelectElement>(null!);
-  let numOfImages:number=0;
-  if (selectRef.current) {
-    numOfImages=Number(selectRef.current.value);
-  }
-
   const handleClickOnOpen = ():void => {
     setIsVisible({visibility: 'visible'});
   };
@@ -59,6 +56,10 @@ const Content:React.FC = () => {
     setIsVisible({visibility: 'hidden'});
   };
   const handleClickOnOK=():void => {
+    if (selectRef.current) {
+      console.log(selectRef.current.value);
+      setNumOfImages(Number(selectRef.current.value));
+    }
     handleClickOnCancel();
   };
   const handleSettingsOnOpen=():void => {
@@ -97,49 +98,52 @@ const Content:React.FC = () => {
   /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
   return (
     <div style={mode.content}>
-      <div className="overlay" style={isVisible} />
-      <div className="overlay" style={settingsVisible} />
-      <Modal
-        isVisible={isVisible}
-        handleClickOnCancel={handleClickOnCancel}
-        selectRef={selectRef}
-        handleClickOnOK={handleClickOnOK}
-        style={mode.modal}
-        styleSelect={mode.select}
-      />
-      <SettingsModal
-        settingsVisible={settingsVisible}
-        handleSettingsOnCancel={handleSettingsOnCancel}
-        selectSoundRef={selectSoundRef}
-        selectCardFaceRef={selectCardFaceRef}
-        selectModeRef={selectModeRef}
-        handleSettingsOnOK={handleSettingsOnOK}
-        style={mode.modal}
-        styleSelect={mode.select}
-      />
-      <header className="header" style={mode.header}>
-        <div className="header__logo">
-          <h1 style={{fontFamily: 'RocknRoll One, sans-serif'}}> Memory Game</h1>
-        </div>
-        <div className="header__content">
-          <ul className="content__list">
-            <li onClick={() => handleClickOnOpen()}>New Game
-            </li>
-            <li>How it works</li>
-            {/* make a simple game in 31 steps */}
-            <li>Best results</li>
-            {/* a table with 10 best games from local storage or backend */}
-            <li onClick={() => handleSettingsOnOpen()}>Settings</li>
-            {/* sound on off, choose how card looks like, theme dark or light */}
-          </ul>
-        </div>
-      </header>
-      <Game
-        numOfImages={numOfImages}
-        soundOn={soundOn}
-        cardFace={cardFace}
-      />
-      <Footer />
+      <div style={{paddingBottom: '30px'}}>
+        <div className="overlay" style={isVisible} />
+        <div className="overlay" style={settingsVisible} />
+        <Modal
+          isVisible={isVisible}
+          handleClickOnCancel={handleClickOnCancel}
+          selectRef={selectRef}
+          handleClickOnOK={handleClickOnOK}
+          style={mode.modal}
+          styleSelect={mode.select}
+        />
+        <SettingsModal
+          settingsVisible={settingsVisible}
+          handleSettingsOnCancel={handleSettingsOnCancel}
+          selectSoundRef={selectSoundRef}
+          selectCardFaceRef={selectCardFaceRef}
+          selectModeRef={selectModeRef}
+          handleSettingsOnOK={handleSettingsOnOK}
+          style={mode.modal}
+          styleSelect={mode.select}
+        />
+        <header className="header" style={mode.header}>
+          <div className="header__logo">
+            <h1 style={{fontFamily: 'RocknRoll One, sans-serif'}}> Memory Game</h1>
+          </div>
+          <div className="header__content">
+            <ul className="content__list">
+              <li onClick={() => handleClickOnOpen()}>New Game
+              </li>
+              <li>Best results</li>
+              {/* a table with 10 best games from local storage */}
+              <li onClick={() => handleSettingsOnOpen()}>Settings</li>
+              {/* sound on off, choose how card looks like, theme dark or light */}
+            </ul>
+          </div>
+        </header>
+        <Game
+          numOfImages={numOfImages}
+          soundOn={soundOn}
+          cardFace={cardFace}
+          selectInitialRef={selectInitialRef}
+          styleSelect={mode.select}
+          setNumOfImages={setNumOfImages}
+        />
+      </div>
+      <Footer style={mode.content} />
     </div>
 
   );

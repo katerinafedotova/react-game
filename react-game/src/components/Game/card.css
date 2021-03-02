@@ -46,3 +46,9 @@
   .wrong{
     border:3px solid #e61c38;
   }
+  @media(max-width:600){
+    .flip-card{
+      width: 118px;
+      height: 160px;
+    }
+  }
