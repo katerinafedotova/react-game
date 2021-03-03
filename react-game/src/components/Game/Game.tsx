@@ -10,13 +10,13 @@ type Props={
   soundOn:boolean,
   mode:string,
   cardFace:string,
-  selectInitialRef:any,
+  selectInitialRef:React.MutableRefObject<HTMLSelectElement>,
   styleSelect:any,
   styleFullscreen:any,
-  setNumOfImages:any,
+  setNumOfImages:(value:number)=>void,
   language:string,
   gameJustOpened:boolean,
-  setGameJustOpened:any,
+  setGameJustOpened:(value:boolean)=>void,
 };
 const Game:React.FC<Props> = ({
   numOfImages, soundOn, mode, cardFace,
