@@ -1,7 +1,7 @@
 .modal-wrapper{
     position: fixed;
     width: 100%;
-    top:30%;
+    top:20%;
     z-index:1050;
 }
 .modal {
@@ -10,10 +10,11 @@
     max-width: 520px;
 }
 .modal-content{
-    padding: 20px;
+    padding: 0.5em;
     position: relative;
 }
-.modal-content__sound, .modal-content__cardFace, .modal-content__mode{
+
+.modal-content__sound, .modal-content__cardFace, .modal-content__mode,.modal-content__language{
     margin: 1em 0;
     display:flex;
     justify-content: center;
@@ -21,6 +22,9 @@
 }
 .modal-content>h3{
     margin: 0.8em 0;
+}
+#modal-content__title{
+    margin: 1em 0 1.5em 0;
 }
 #cardsNumber, #theme, #cardFace, #sound, #language{
     display: block;
@@ -37,13 +41,13 @@
 .modal-content__cancel-button{
     width: 25px;
     position: absolute;
-    top: 7%;
+    top: 4%;
     right: 3%;
     border-radius: 50%;
     cursor: pointer;
 }
 .modal-content__button{
-    margin: 3em 0 0;
+    margin: 0.8em;
     padding: 5px 12px;
     text-align: center;
     border: 2px solid #070b79;
@@ -53,12 +57,43 @@
     outline:none;
     cursor:pointer;
 }
+#modal-content__button{
+    margin: 1.5em;
+}
 .modal-content__button:hover, .modal-content__cancel-button:hover{
     background: #f0f8ff;
     transform: scale(1.1);
 }
+.modal-content__hotkeys>h3{
+    margin: 0 0 0.8em;
+}
+.modal-content__hotkeys>p{
+    font-size: 1.2em;
+}
 @media(max-width:600px){
     .modal{
         width: 450px;
+    }
+    h3{
+        font-size: 1.1em;
+    }
+     #theme, #cardFace, #sound, #language{
+        font-size: 1.1em;
+    }
+    .modal-content__hotkeys>p {
+        font-size: 1.1em;
+    }
+}
+@media(max-width:500px){
+    .modal{
+        width: 380px;
+    }
+}
+@media(max-width:400px){
+    .modal{
+        width: 300px;
+    }
+    .modal-content__hotkeys>p {
+        font-size: 1em;
     }
 }

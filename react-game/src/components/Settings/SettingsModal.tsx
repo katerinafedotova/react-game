@@ -55,7 +55,7 @@ const SettingsModal:React.FC<Props> = ({
             <option value="city">{languageConst[language].city}</option>
           </select>
         </div>
-        <div className="modal-content__mode">
+        <div className="modal-content__language">
           <h3>{languageConst[language].language}</h3>
           <select
             name="language"
@@ -78,6 +78,14 @@ const SettingsModal:React.FC<Props> = ({
             <option value="light">{languageConst[language].light}</option>
             <option value="dark">{languageConst[language].dark}</option>
           </select>
+        </div>
+        <div className="modal-content__hotkeys">
+          <h3>{languageConst[language].hotkeys}</h3>
+          <p><strong>1</strong>: {languageConst[language].startNewGame}.</p>
+          <p><strong>3</strong>: {languageConst[language].openSettings}.</p>
+          <p><strong>f</strong>: {languageConst[language].fullscreen.toLowerCase()}.</p>
+          <p><strong>s</strong>: {languageConst[language].toggleSound}.</p>
+          <p><strong>r</strong>: {languageConst[language].openBestResults}.</p>
         </div>
         <button
           type="submit"

@@ -41,6 +41,7 @@ const Card: React.FC<Props> = ({
           };
           array.push(obj);
           localStorage.setItem('bestResultsStats', JSON.stringify(array));
+          localStorage.setItem('numberOfTurns', `${numberOfTurns}`);
           guessedElements=0;
           numberOfTurns=0;
           audioPath = '../../audio/success.mp3';

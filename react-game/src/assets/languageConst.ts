@@ -32,6 +32,11 @@ const languageConst:IAppLang = {
     gameFinished: 'Game finished! It took you',
     turns: 'turns to find all pairs',
     fullscreen: 'Set to fullscreen',
+    hotkeys: 'Hotkeys',
+    startNewGame: 'start new game',
+    openSettings: 'open settings',
+    toggleSound: 'toggle sound',
+    openBestResults: 'open best results',
   },
   russian: {
     newGame: 'Новая игра',
@@ -61,6 +66,11 @@ const languageConst:IAppLang = {
     gameFinished: 'Ииии игра окончена! Тебе понадобилось',
     turns: 'ходов, чтобы найти все пары',
     fullscreen: 'Развернуть во весь экран',
+    hotkeys: 'Горячие клавиши',
+    startNewGame: 'начать новую игру',
+    openSettings: 'открыть настройки',
+    toggleSound: 'включить/выключить звук',
+    openBestResults: 'открыть лучшие результаты',
   },
 };
 export default languageConst;

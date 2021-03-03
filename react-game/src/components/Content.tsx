@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import CSS from 'csstype';
 import SettingsModal from './Settings/SettingsModal';
 import Game from './Game/Game';
@@ -70,6 +70,52 @@ const Content:React.FC = () => {
   const handleBestResults=():void => {
     setBestResults(true);
   };
+  const handleSPress = (event: any) => {
+    console.log(event.key);
+    if (event.key.toLowerCase() === 's') {
+      setSoundOn((prev) => !prev);
+    }
+  };
+  const handle1Press=(event:any) => {
+    if (event.key === '1') {
+      setBestResults(false);
+      setGameJustOpened(true);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('keypress', handleSPress);
+    return () => {
+      window.removeEventListener('keypress', handleSPress);
+    };
+  }, []);
+  useEffect(() => {
+    window.addEventListener('keypress', handle1Press);
+    return () => {
+      window.removeEventListener('keypress', handle1Press);
+    };
+  }, []);
+  const handleRPress=(event:any) => {
+    if (event.key.toLowerCase() === 'r') {
+      setBestResults(true);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('keypress', handleRPress);
+    return () => {
+      window.removeEventListener('keypress', handleRPress);
+    };
+  }, []);
+  const handle3Press=(event:any) => {
+    if (event.key === '3') {
+      setSettingsVisible({visibility: 'visible'}|| {visibility: 'hidden'});
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('keypress', handle3Press);
+    return () => {
+      window.removeEventListener('keypress', handle3Press);
+    };
+  }, []);
   /* eslint-disable jsx-a11y/click-events-have-key-events */
   /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
   return (

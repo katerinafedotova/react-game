@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import Card from './Card';
-import GameStatus from '../GameStatus/GameStatus';
 import BestResultsTable from '../BestResultsTable/BestResultsTable';
 import './game.css';
 import languageConst from '../../assets/languageConst';
@@ -63,7 +62,7 @@ const Game:React.FC<Props> = ({
     gameContainer=(
       <div className="modal">
         <div className="modal-content">
-          <h3>{languageConst[language].chooseNumOfCards}</h3>
+          <h3 id="modal-content__title">{languageConst[language].chooseNumOfCards}</h3>
           <select
             name="cardsNumber"
             id="cardsNumber"
@@ -77,6 +76,7 @@ const Game:React.FC<Props> = ({
           <button
             type="submit"
             className="modal-content__button"
+            id="modal-content__button"
             onClick={() => handleClickOnOK()}
             style={styleSelect}
           >{languageConst[language].start}
@@ -100,14 +100,28 @@ const Game:React.FC<Props> = ({
       ))
     );
   }
+  const fullscreenButton=useRef<HTMLButtonElement>(null!);
+  /* eslint-disable @typescript-eslint/no-unused-expressions */
+  const handleFPress=(event:any) => {
+    if (event.key === 'f') {
+      fullscreenButton.current.click();
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('keypress', handleFPress);
+    return () => {
+      window.removeEventListener('keypress', handleFPress);
+    };
+  }, []);
+
   return (
     <>
-      <GameStatus language={language} />
       <button
         type="button"
         onClick={handle.enter}
         className="fullscreen-btn"
         style={styleFullscreen}
+        ref={fullscreenButton}
       >{languageConst[language].fullscreen}
       </button>
       <FullScreen
