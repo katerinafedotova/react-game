@@ -1,19 +1,23 @@
 import React from 'react';
 import './bestResultsTable.css';
+import languageConst from '../../assets/languageConst';
 
-const BestResultsTable:React.FC=() => {
+type Props={
+  language:string,
+};
+const BestResultsTable:React.FC<Props>=({language}:Props) => {
   const bestResultsArray=JSON.parse(localStorage.getItem('bestResultsStats') || '[]');
   const generateKey = (index: string) => `${index}_${new Date().getMilliseconds()}`;
   return (
     <div className="best-results-container">
-      <h2 className="best-results-container__title">Best results</h2>
+      <h2 className="best-results-container__title">{languageConst[language].bestResults}</h2>
       <div className="best-results-container__table-container">
         <table className="table-container__table">
           <thead>
             <tr>
-              <th>Date</th>
-              <th>Number of turns</th>
-              <th>Number of cards</th>
+              <th>{languageConst[language].date}</th>
+              <th>{languageConst[language].turn}</th>
+              <th>{languageConst[language].cards}</th>
             </tr>
           </thead>
           <tbody>

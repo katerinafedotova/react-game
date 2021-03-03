@@ -9,6 +9,7 @@
     position: relative;
     border-collapse: collapse;
     box-shadow: 3px 3px 10px 2px #f0f8ff;
+    color: #171c83;
     cursor: pointer;
 }
 thead{

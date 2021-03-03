@@ -47,7 +47,7 @@ const Game:React.FC<Props> = ({
   let gameContainer:any=null;
   if (bestResults) {
     gameContainer=(
-      <BestResultsTable />
+      <BestResultsTable language={language} />
     );
   } else if (gameFinished) {
     gameContainer= (
