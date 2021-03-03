@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
+import ReactHowler from 'react-howler';
 import CSS from 'csstype';
 import SettingsModal from './Settings/SettingsModal';
 import Game from './Game/Game';
@@ -14,11 +15,14 @@ const Content:React.FC = () => {
   const [settingsVisible, setSettingsVisible] = useState<CSS.Properties>({visibility: 'hidden'});
   const [numOfImages, setNumOfImages]=useState<number>(0);
   const [soundOn, setSoundOn] = useState(true);
+  const [volume, setVolume] = useState(0.7);
+  const [musicOn, setMusicOn] = useState(true);
   const [cardFace, setCardFace] = useState('card-back.png');
   const [mode, setMode] = useState(lightMode);
   const [language, setLanguage] =useState('english');
   const selectInitialRef= useRef<HTMLSelectElement>(null!);
   const selectSoundRef = useRef<HTMLSelectElement>(null!);
+  const selectMusicRef = useRef<HTMLSelectElement>(null!);
   const selectCardFaceRef = useRef<HTMLSelectElement>(null!);
   const selectModeRef = useRef<HTMLSelectElement>(null!);
   const selectLanguageRef = useRef<HTMLSelectElement>(null!);
@@ -38,6 +42,13 @@ const Content:React.FC = () => {
         setSoundOn(true);
       } else {
         setSoundOn(false);
+      }
+    }
+    if (selectMusicRef.current) {
+      if (selectMusicRef.current.value==='on') {
+        setMusicOn(true);
+      } else {
+        setMusicOn(false);
       }
     }
     if (selectCardFaceRef.current) {
@@ -74,6 +85,7 @@ const Content:React.FC = () => {
     console.log(event.key);
     if (event.key.toLowerCase() === 's') {
       setSoundOn((prev) => !prev);
+      setMusicOn((prev) => !prev);
     }
   };
   const handle1Press=(event:any) => {
@@ -120,12 +132,20 @@ const Content:React.FC = () => {
   /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
   return (
     <div style={mode.content}>
+      <ReactHowler
+        src="./audio/music1.mp3"
+        playing={musicOn}
+        volume={volume}
+      />
       <div style={{paddingBottom: '30px'}}>
         <div className="overlay" style={settingsVisible} />
         <SettingsModal
           settingsVisible={settingsVisible}
           handleSettingsOnCancel={handleSettingsOnCancel}
           selectSoundRef={selectSoundRef}
+          setVolume={setVolume}
+          volume={volume}
+          selectMusicRef={selectMusicRef}
           selectCardFaceRef={selectCardFaceRef}
           selectModeRef={selectModeRef}
           selectLanguageRef={selectLanguageRef}

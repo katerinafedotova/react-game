@@ -5,7 +5,10 @@ import languageConst from '../../assets/languageConst';
 type Props={
   settingsVisible:any,
   handleSettingsOnCancel:()=>void,
+  setVolume:(a:number)=>void,
+  volume:number,
   selectSoundRef:React.MutableRefObject<HTMLSelectElement>,
+  selectMusicRef:React.MutableRefObject<HTMLSelectElement>,
   selectCardFaceRef:React.MutableRefObject<HTMLSelectElement>,
   selectModeRef:React.MutableRefObject<HTMLSelectElement>,
   selectLanguageRef:React.MutableRefObject<HTMLSelectElement>,
@@ -14,9 +17,10 @@ type Props={
   styleSelect:any,
   language:string
 };
+/* eslint-disable  */
 const SettingsModal:React.FC<Props> = ({
   settingsVisible, handleSettingsOnCancel,
-  selectSoundRef, selectCardFaceRef, selectModeRef, selectLanguageRef,
+  selectSoundRef, setVolume, volume, selectMusicRef, selectCardFaceRef, selectModeRef, selectLanguageRef,
   handleSettingsOnOK, style, styleSelect, language,
 }:Props) => (
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -38,9 +42,27 @@ const SettingsModal:React.FC<Props> = ({
             ref={selectSoundRef}
             style={styleSelect}
           >
+          <option value="on">{languageConst[language].on}</option>
+            <option value="off">{languageConst[language].off}</option>
+          </select>
+        </div>
+        <div className="modal-content__sound">
+          <h3>{languageConst[language].music}</h3>
+          <select
+            name="sound"
+            id="sound"
+            ref={selectMusicRef}
+            style={styleSelect}
+          >
             <option value="on">{languageConst[language].on}</option>
             <option value="off">{languageConst[language].off}</option>
           </select>
+        </div>
+        <div className="modal-content__volume">
+          <h3>{languageConst[language].volume}</h3>
+          <span><input 
+            onChange={e => setVolume( parseFloat(e.target.value))}
+            type="range" step=".05" min="0" max="1" value={volume} /></span>
         </div>
         <div className="modal-content__cardFace">
           <h3>{languageConst[language].cardFace}</h3>
