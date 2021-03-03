@@ -33,7 +33,14 @@ const Card: React.FC<Props> = ({
       if (pairElements[0].dataset.image===pairElements[1].dataset.image) {
         guessedElements+=1;
         if (guessedElements===numberOfCards/2) {
-          localStorage.setItem('numberOfTurns', `${numberOfTurns}`);
+          const array=JSON.parse(localStorage.getItem('bestResultsStats')||'[]');
+          const obj={
+            turns: numberOfTurns,
+            cards: numberOfCards,
+            date: new Date(),
+          };
+          array.push(obj);
+          localStorage.setItem('bestResultsStats', JSON.stringify(array));
           guessedElements=0;
           numberOfTurns=0;
           audioPath = '../../audio/success.mp3';

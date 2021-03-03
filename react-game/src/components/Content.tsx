@@ -9,6 +9,7 @@ import {darkMode, lightMode} from '../assets/modeStyles';
 import languageConst from '../assets/languageConst';
 
 const Content:React.FC = () => {
+  const [bestResults, setBestResults]=useState(false);
   const [gameJustOpened, setGameJustOpened] =useState(true);
   const [settingsVisible, setSettingsVisible] = useState<CSS.Properties>({visibility: 'hidden'});
   const [numOfImages, setNumOfImages]=useState<number>(0);
@@ -22,11 +23,8 @@ const Content:React.FC = () => {
   const selectModeRef = useRef<HTMLSelectElement>(null!);
   const selectLanguageRef = useRef<HTMLSelectElement>(null!);
   const handleClickOnOpen = ():void => {
-    if (gameJustOpened) {
-      alert('Just click on START!');
-    } else {
-      setGameJustOpened(true);
-    }
+    setBestResults(false);
+    setGameJustOpened(true);
   };
   const handleSettingsOnOpen=():void => {
     setSettingsVisible({visibility: 'visible'});
@@ -69,6 +67,9 @@ const Content:React.FC = () => {
     }
     handleSettingsOnCancel();
   };
+  const handleBestResults=():void => {
+    setBestResults(true);
+  };
   /* eslint-disable jsx-a11y/click-events-have-key-events */
   /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
   return (
@@ -95,7 +96,7 @@ const Content:React.FC = () => {
             <ul className="content__list">
               <li onClick={() => handleClickOnOpen()}>{languageConst[language].newGame}
               </li>
-              <li>{languageConst[language].bestResults}</li>
+              <li onClick={() => handleBestResults()}>{languageConst[language].bestResults}</li>
               {/* a table with 10 best games from local storage */}
               <li onClick={() => handleSettingsOnOpen()}>{languageConst[language].settings}</li>
             </ul>
@@ -113,6 +114,7 @@ const Content:React.FC = () => {
           styleFullscreen={mode.fullscreen}
           setNumOfImages={setNumOfImages}
           language={language}
+          bestResults={bestResults}
         />
       </div>
       <Footer style={mode.content} linkStyle={mode.content} />

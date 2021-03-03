@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import Card from './Card';
 import GameStatus from '../GameStatus/GameStatus';
+import BestResultsTable from '../BestResultsTable/BestResultsTable';
 import './game.css';
 import languageConst from '../../assets/languageConst';
 
@@ -17,12 +18,13 @@ type Props={
   language:string,
   gameJustOpened:boolean,
   setGameJustOpened:(value:boolean)=>void,
+  bestResults:boolean,
 };
 const Game:React.FC<Props> = ({
   numOfImages, soundOn, mode, cardFace,
   selectInitialRef, styleSelect, styleFullscreen,
   setNumOfImages, language,
-  gameJustOpened, setGameJustOpened,
+  gameJustOpened, setGameJustOpened, bestResults,
 }:Props) => {
   const handle = useFullScreenHandle();
   const [gameFinished, setGameFinished] =useState<boolean>(false);
@@ -43,7 +45,11 @@ const Game:React.FC<Props> = ({
   /* eslint-disable jsx-a11y/click-events-have-key-events */
   /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
   let gameContainer:any=null;
-  if (gameFinished) {
+  if (bestResults) {
+    gameContainer=(
+      <BestResultsTable />
+    );
+  } else if (gameFinished) {
     gameContainer= (
       <div className="game-container__game-end">
         <h2 className="game-end__title">{languageConst[language].gameFinished} {localStorage.getItem('numberOfTurns')} {languageConst[language].turns}! </h2>
