@@ -4,10 +4,10 @@ import CSS from 'csstype';
 import SettingsModal from './Settings/SettingsModal';
 import Game from './Game/Game';
 import Footer from './Footer/Footer';
+import languageConst from '../assets/languageConst';
+import {darkMode, lightMode} from '../assets/modeStyles';
 import './Settings/header.css';
 import './Settings/modal.css';
-import {darkMode, lightMode} from '../assets/modeStyles';
-import languageConst from '../assets/languageConst';
 
 const Content:React.FC = () => {
   const [bestResults, setBestResults]=useState(false);
@@ -160,11 +160,9 @@ const Content:React.FC = () => {
           </div>
           <div className="header__content">
             <ul className="content__list">
-              <li onClick={() => handleClickOnOpen()}>{languageConst[language].newGame}
-              </li>
-              <li onClick={() => handleBestResults()}>{languageConst[language].bestResults}</li>
-              {/* a table with 10 best games from local storage */}
-              <li onClick={() => handleSettingsOnOpen()}>{languageConst[language].settings}</li>
+              <li onClick={handleClickOnOpen}>{languageConst[language].newGame}</li>
+              <li onClick={handleBestResults}>{languageConst[language].bestResults}</li>
+              <li onClick={handleSettingsOnOpen}>{languageConst[language].settings}</li>
             </ul>
           </div>
         </header>

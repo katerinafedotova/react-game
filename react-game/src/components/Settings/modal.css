@@ -44,9 +44,12 @@
 }
 .modal-content__cancel-button{
     width: 25px;
+    height:25px;
+    background-size: cover;
     position: absolute;
     top: 4%;
     right: 3%;
+    border:none;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -64,8 +67,11 @@
 #modal-content__button{
     margin: 1.5em;
 }
-.modal-content__button:hover, .modal-content__cancel-button:hover{
+.modal-content__button:hover{
     background: #f0f8ff;
+    transform: scale(1.1);
+}
+.modal-content__cancel-button:hover{
     transform: scale(1.1);
 }
 .modal-content__hotkeys>h3{

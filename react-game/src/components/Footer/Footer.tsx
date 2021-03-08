@@ -1,6 +1,6 @@
 import React from 'react';
-import './footer.css';
 import logo from '../../assets/rs_school_logo.svg';
+import './footer.css';
 
 type Props={
   style:any,

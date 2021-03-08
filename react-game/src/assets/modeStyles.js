@@ -1,4 +1,4 @@
-const darkMode={
+export const darkMode={
   content: {
     background: '#37638a',
     color: '#ced8e0',
@@ -17,7 +17,7 @@ const darkMode={
     color: '#070b79',
   },
 };
-const lightMode={
+export const lightMode={
   content: {
     background: '#f0f8ff',
     color: '#050969',
@@ -36,4 +36,3 @@ const lightMode={
     color: '#f0f8ff',
   },
 };
-export {darkMode, lightMode};

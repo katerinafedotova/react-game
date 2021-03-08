@@ -1,9 +1,9 @@
-interface IAppLang {
+interface AppLang {
   [key: string]: {
     [key: string]: string
   }
 }
-const languageConst:IAppLang = {
+const languageConst:AppLang = {
   english: {
     newGame: 'New Game',
     bestResults: 'Best Results',

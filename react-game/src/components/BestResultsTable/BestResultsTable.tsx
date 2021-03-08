@@ -1,6 +1,6 @@
 import React from 'react';
-import './bestResultsTable.css';
 import languageConst from '../../assets/languageConst';
+import './bestResultsTable.css';
 
 type Props={
   language:string,

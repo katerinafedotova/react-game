@@ -1,6 +1,6 @@
 import React from 'react';
-import './modal.css';
 import languageConst from '../../assets/languageConst';
+import './modal.css';
 
 type Props={
   settingsVisible:any,
@@ -17,22 +17,20 @@ type Props={
   styleSelect:any,
   language:string
 };
-/* eslint-disable  */
 const SettingsModal:React.FC<Props> = ({
   settingsVisible, handleSettingsOnCancel,
-  selectSoundRef, setVolume, volume, selectMusicRef, selectCardFaceRef, selectModeRef, selectLanguageRef,
-  handleSettingsOnOK, style, styleSelect, language,
+  selectSoundRef, setVolume, volume, selectMusicRef, selectCardFaceRef,
+  selectModeRef, selectLanguageRef, handleSettingsOnOK, style, styleSelect, language,
 }:Props) => (
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-  /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
   <div className="modal-wrapper" style={settingsVisible}>
     <div className="modal" style={style}>
       <div className="modal-content">
-        <img
-          src="./cancel.png"
-          alt="cancel button"
+        <button
+          type="button"
+          aria-label="cancel"
           className="modal-content__cancel-button"
-          onClick={() => handleSettingsOnCancel()}
+          style={{backgroundImage: 'url(./cancel.png)'}}
+          onClick={handleSettingsOnCancel}
         />
         <div className="modal-content__sound">
           <h3>{languageConst[language].sound}</h3>
@@ -42,7 +40,7 @@ const SettingsModal:React.FC<Props> = ({
             ref={selectSoundRef}
             style={styleSelect}
           >
-          <option value="on">{languageConst[language].on}</option>
+            <option value="on">{languageConst[language].on}</option>
             <option value="off">{languageConst[language].off}</option>
           </select>
         </div>
@@ -60,9 +58,15 @@ const SettingsModal:React.FC<Props> = ({
         </div>
         <div className="modal-content__volume">
           <h3>{languageConst[language].volume}</h3>
-          <span><input 
-            onChange={e => setVolume( parseFloat(e.target.value))}
-            type="range" step=".05" min="0" max="1" value={volume} /></span>
+          <span><input
+            onChange={(e) => setVolume(parseFloat(e.target.value))}
+            type="range"
+            step=".05"
+            min="0"
+            max="1"
+            value={volume}
+          />
+          </span>
         </div>
         <div className="modal-content__cardFace">
           <h3>{languageConst[language].cardFace}</h3>
@@ -112,7 +116,7 @@ const SettingsModal:React.FC<Props> = ({
         <button
           type="submit"
           className="modal-content__button"
-          onClick={() => handleSettingsOnOK()}
+          onClick={handleSettingsOnOK}
         >OK
         </button>
       </div>

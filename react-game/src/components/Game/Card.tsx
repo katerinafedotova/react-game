@@ -19,7 +19,7 @@ const Card: React.FC<Props> = ({
   imagesNumber, index, soundOn, cardFace,
   numberOfCards, setGameFinished, setGameJustOpened,
 }:Props) => {
-  const handleClick=(e:React.MouseEvent):void => {
+  const handleClick=(e:React.MouseEvent) => {
     let audioPath: string;
     const target = e.target as HTMLDivElement;
     if (target.dataset.image && pairElements.length<2 && target.parentNode) {
@@ -56,7 +56,6 @@ const Card: React.FC<Props> = ({
         }
         audioPath = './audio/success_sound.mp3';
         setTimeout(() => {
-          /* eslint-disable array-callback-return */
           Array.from(parents).forEach((parent:any):void => {
             parent.classList.add('correct');
           });
@@ -66,7 +65,6 @@ const Card: React.FC<Props> = ({
       } else {
         audioPath = '../../audio/mistake_sound.mp3';
         setTimeout(() => {
-          /* eslint-disable array-callback-return */
           Array.from(parents).forEach((parent:any):void => {
             parent.classList.add('wrong');
           });
@@ -98,7 +96,7 @@ const Card: React.FC<Props> = ({
           style={{backgroundImage: `url(./${cardFace})`}}
           data-image={imagesNumber}
           data-index={index}
-          onClick={(e) => handleClick(e)}
+          onClick={handleClick}
         />
         <div
           className="flip-card-back"

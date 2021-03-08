@@ -2,8 +2,8 @@ import React, {useState, useEffect, useRef} from 'react';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import Card from './Card';
 import BestResultsTable from '../BestResultsTable/BestResultsTable';
-import './game.css';
 import languageConst from '../../assets/languageConst';
+import './game.css';
 
 type Props={
   numOfImages:number,
@@ -41,8 +41,6 @@ const Game:React.FC<Props> = ({
   const getRandomImages=():number[] => imagesArray.sort(() => Math.random() - 0.5);
   const images=getRandomImages();
   const generateKey = (index: string) => `${index}_${new Date().getMilliseconds()}`;
-  /* eslint-disable jsx-a11y/click-events-have-key-events */
-  /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
   let gameContainer:any=null;
   if (bestResults) {
     gameContainer=(
@@ -101,7 +99,6 @@ const Game:React.FC<Props> = ({
     );
   }
   const fullscreenButton=useRef<HTMLButtonElement>(null!);
-  /* eslint-disable @typescript-eslint/no-unused-expressions */
   const handleFPress=(event:any) => {
     if (event.key === 'f') {
       fullscreenButton.current.click();
